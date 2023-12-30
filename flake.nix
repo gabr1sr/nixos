@@ -12,7 +12,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nur, hardware, ... }@inputs:
+  {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };

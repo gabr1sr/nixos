@@ -116,6 +116,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables.VK_ICD_FILENAMES =
+  "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -123,6 +126,12 @@
     wget
     git
     jetbrains-mono
+    xwayland
+    libGL
+
+    (steam.override {
+      extraPkgs = pkgs: [ gperftools ];
+    }).run
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -142,6 +151,14 @@
     };
   };
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  programs.noisetorch.enable = true;
+  
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

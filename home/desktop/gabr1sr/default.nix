@@ -5,6 +5,8 @@
     ./programs/git.nix
     ./programs/direnv.nix
   ];
+
+  nixpkgs.config.allowUnfree = true;
   
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -26,6 +28,9 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+    pkgs.authy
+    pkgs.spotify
+    pkgs.discord
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
