@@ -4,6 +4,7 @@
   imports = [
     ./programs/git.nix
     ./programs/direnv.nix
+    ./programs/vscodium.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -31,6 +32,8 @@
     pkgs.authy
     pkgs.spotify
     pkgs.discord
+
+    pkgs.vscode-solidity-server
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

@@ -13,6 +13,15 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, hardware, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (import ./overlays { inherit inputs system; })
+        ];
+      };
+    in
   {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
@@ -25,7 +34,7 @@
 
     homeConfigurations = {
       "gabr1sr@desktop" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        inherit pkgs;
 	      extraSpecialArgs = { inherit inputs; };
 	      modules = [
 	        ./home/desktop/gabr1sr/default.nix
