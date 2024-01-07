@@ -3,6 +3,8 @@
 final: prev: {
   vscode-solidity-server = final.callPackage ../packages/vscode-solidity-server.nix { };
 
+  dangerzone = final.callPackage ../packages/dangerzone/default.nix { };
+
   # generated using nix4vscode
   vscode-extensions = final.lib.recursiveUpdate prev.vscode-extensions {
     "jebbs"."plantuml" = final.vscode-utils.extensionFromVscodeMarketplace {

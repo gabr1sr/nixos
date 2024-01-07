@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../containers/browser.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -41,6 +42,12 @@
    '';
   };
 
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "ve-browser" ];
+    externalInterface = "wg0";
+  };
+
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
@@ -66,9 +73,10 @@
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
+  #services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Configure keymap in X11
   services.xserver = {
@@ -126,11 +134,28 @@
     wget
     git
     jetbrains-mono
-    xwayland
     libGL
+    libxml2
+    libselinux
+    mpv
+    socat
+    xorg.xhost
 
     (steam.override {
-      extraPkgs = pkgs: [ gperftools ];
+      extraPkgs = pkgs: [
+        glxinfo
+        gperftools
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+      ];
     }).run
   ];
 
@@ -162,9 +187,11 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    gamescopeSession.enable = true;
   };
 
   programs.noisetorch.enable = true;
+  programs.gamemode.enable = true;
   
   # List services that you want to enable:
 
@@ -183,6 +210,14 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
   system.stateVersion = "23.11"; # Did you read the comment?
 
 }
