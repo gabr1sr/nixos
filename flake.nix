@@ -17,33 +17,29 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          (import ./overlays { inherit inputs system; })
-        ];
+        overlays =
+          [ nur.overlay (import ./overlays { inherit inputs system; }) ];
       };
-    in
-  {
-    nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-	      modules = [
-	        ./host/desktop/configuration.nix
-	      ];
+    in {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./host/desktop/configuration.nix ];
+        };
+      };
+
+      homeConfigurations = {
+        "gabr1sr@desktop" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./home/desktop/gabr1sr/default.nix
+
+            { imports = [ inputs.nur.hmModules.nur ]; }
+          ];
+        };
       };
     };
-
-    homeConfigurations = {
-      "gabr1sr@desktop" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-	      extraSpecialArgs = { inherit inputs; };
-	      modules = [
-	        ./home/desktop/gabr1sr/default.nix
-
-          {
-	          imports = [ inputs.nur.hmModules.nur ];
-	        }
-	      ];
-      };
-    };
-  };
 }

@@ -1,9 +1,4 @@
-{ lib
-, pkgs
-, python3
-, fetchFromGitHub
-}:
-
+{ lib, pkgs, python3, fetchFromGitHub, }:
 python3.pkgs.buildPythonApplication rec {
   pname = "dangerzone";
   version = "0.5.0";
@@ -17,9 +12,7 @@ python3.pkgs.buildPythonApplication rec {
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = [
-    python3.pkgs.poetry-core
-  ];
+  nativeBuildInputs = [ python3.pkgs.poetry-core ];
 
   propagatedBuildInputs = with python3.pkgs; [
     appdirs
@@ -50,9 +43,11 @@ python3.pkgs.buildPythonApplication rec {
   pythonImportsCheck = [ "dangerzone" ];
 
   meta = {
-    description = "Take potentially dangerous PDFs, office documents, or images and convert them to safe PDFs";
+    description =
+      "Take potentially dangerous PDFs, office documents, or images and convert them to safe PDFs";
     homepage = "https://github.com/freedomofpress/dangerzone";
-    changelog = "https://github.com/freedomofpress/dangerzone/blob/${src.rev}/CHANGELOG.md";
+    changelog =
+      "https://github.com/freedomofpress/dangerzone/blob/${src.rev}/CHANGELOG.md";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ eclairevoyant ];
     mainProgram = "dangerzone";

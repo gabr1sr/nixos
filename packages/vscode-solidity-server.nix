@@ -1,14 +1,13 @@
-{ lib, buildNpmPackage, fetchFromGitHub, pkg-config, libsecret }:
-
+{ lib, buildNpmPackage, fetchFromGitHub, pkg-config, libsecret, }:
 buildNpmPackage rec {
   pname = "vscode-solidity-server";
   version = "0.0.165";
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ libsecret ];
-  
+
   npmBuildScript = "build:cli";
-  
+
   src = fetchFromGitHub {
     owner = "juanfranblanco";
     repo = "vscode-solidity";
@@ -19,7 +18,8 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-ZFoCnpEoJxCRVCi7uUYXlGVTiWBAXk3rR/i7+EGVfvM=";
 
   meta = {
-    description = "Visual Studio Code language support extension for Solidity smart contracts in Ethereum";
+    description =
+      "Visual Studio Code language support extension for Solidity smart contracts in Ethereum";
     homepage = "https://github.com/juanfranblanco/vscode-solidity";
     license = lib.licenses.mit;
   };

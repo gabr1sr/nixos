@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   containers.browser = {
     autoStart = false;
     privateNetwork = true;
@@ -11,14 +9,16 @@
         enable = true;
         settings.X11Forwarding = true;
         extraConfig = ''
-        X11Forwarding yes
+          X11Forwarding yes
         '';
       };
 
       users.extraUsers.browser = {
         isNormalUser = true;
         home = "/home/browser";
-        openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB63kRM4JhFq01690vYRLF9heUCVgSA+4AgYoED6tNCP gabr1sr@desktop" ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB63kRM4JhFq01690vYRLF9heUCVgSA+4AgYoED6tNCP gabr1sr@desktop"
+        ];
         extraGroups = [ "audio" "video" ];
       };
 
@@ -30,10 +30,7 @@
         tcp = {
           enable = true;
           anonymousClients = {
-            allowedIpRanges = [
-              "127.0.0.1"
-              "192.168.7.0/24"
-            ];
+            allowedIpRanges = [ "127.0.0.1" "192.168.7.0/24" ];
           };
         };
       };
