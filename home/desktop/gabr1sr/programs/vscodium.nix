@@ -7,6 +7,7 @@
       "editor.fontFamily" = "JetBrains Mono";
       "terminal.integrated.fontFamily" = "JetBrains Mono";
       "workbench.colorTheme" = "Solidity Visual Developer Dark";
+      "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
     };
 
     extensions = with pkgs.vscode-extensions; [
@@ -15,11 +16,15 @@
       tintinweb.solidity-visual-auditor
       tintinweb.vscode-solidity-language
 
+      # Rust
+      rust-lang.rust-analyzer
+      bungcip.better-toml
+      starkware.cairo1
+      
       # Misc
       jebbs.plantuml
       editorconfig.editorconfig
       tintinweb.graphviz-interactive-preview
-      starkware.cairo1
     ];
   };
 }

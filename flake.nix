@@ -4,21 +4,26 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:NixOS/nixos-hardware";
-    nur.url = "github:nix-community/nur";
+    nur.url = "github:nix-community/NUR";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    
     homeManager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, hardware, rust-overlay, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        overlays =
-          [ nur.overlay (import ./overlays { inherit inputs system; }) ];
+        overlays = [
+          nur.overlay
+          (import ./overlays { inherit inputs system; })
+          (import rust-overlay)
+        ];
       };
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;

@@ -96,6 +96,9 @@
     mpv
     socat
     xorg.xhost
+    wineWowPackages.stable
+    winetricks
+    lutris
 
     (steam.override {
       extraPkgs = pkgs: [

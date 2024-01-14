@@ -1,8 +1,5 @@
 { inputs, system, ... }:
 final: prev: {
-  vscode-solidity-server =
-    final.callPackage ../packages/vscode-solidity-server.nix { };
-
   dangerzone = final.callPackage ../packages/dangerzone/default.nix { };
 
   # generated using nix4vscode
@@ -51,6 +48,20 @@ final: prev: {
       publisher = "starkware";
       version = "2.3.0";
       sha256 = "0h5w1jhy22nhk3bhf0cgf0csxxn58d0klzzi6mbm404mcdg1hwkm";
+    };
+
+    "bungcip"."better-toml" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "better-toml";
+      publisher = "bungcip";
+      version = "0.3.2";
+      sha256 = "08lhzhrn6p0xwi0hcyp6lj9bvpfj87vr99klzsiy8ji7621dzql3";
+    };
+
+    "rust-lang"."rust-analyzer" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "rust-analyzer";
+      publisher = "rust-lang";
+      version = "0.4.1805";
+      sha256 = "0b8x02lhlr5049m5vakizlgv1xjawppnrczni1rp8ga0ng3w4d4s";
     };
   };
 }
