@@ -19,6 +19,7 @@
       jebbs.plantuml
       editorconfig.editorconfig
       tintinweb.graphviz-interactive-preview
+      starkware.cairo1
     ];
   };
 }

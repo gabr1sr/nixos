@@ -45,5 +45,12 @@ final: prev: {
         version = "0.2.0";
         sha256 = "1v3jaxcdnlyip6qgpyy6pp58d72pzgm9ryk3n5lkcbm721ldn8v2";
       };
+
+    "starkware"."cairo1" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "cairo1";
+      publisher = "starkware";
+      version = "2.3.0";
+      sha256 = "0h5w1jhy22nhk3bhf0cgf0csxxn58d0klzzi6mbm404mcdg1hwkm";
+    };
   };
 }
