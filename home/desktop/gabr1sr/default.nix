@@ -22,6 +22,9 @@
     # Gaming
     pkgs.clonehero
 
+    # Solidity
+    pkgs.nur.repos.gabr1sr.vscode-solidity-server
+    
     # Starknet / Cairo
     pkgs.nur.repos.gabr1sr.starknet-foundry-bin
     pkgs.nur.repos.gabr1sr.scarb-bin

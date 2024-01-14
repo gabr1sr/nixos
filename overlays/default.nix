@@ -63,5 +63,12 @@ final: prev: {
       version = "0.4.1805";
       sha256 = "0b8x02lhlr5049m5vakizlgv1xjawppnrczni1rp8ga0ng3w4d4s";
     };
+
+    "huff-language"."huff-language" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "huff-language";
+      publisher = "huff-language";
+      version = "0.0.32";
+      sha256 = "1ykhzs3nllbnl0dpb2xlvd4m9hj8am7nzz1fx9zw2z2gylx533js";
+    };
   };
 }

@@ -16,6 +16,9 @@
       tintinweb.solidity-visual-auditor
       tintinweb.vscode-solidity-language
 
+      # Huff
+      huff-language.huff-language
+
       # Rust
       rust-lang.rust-analyzer
       bungcip.better-toml
