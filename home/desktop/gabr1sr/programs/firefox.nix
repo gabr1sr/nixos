@@ -92,7 +92,7 @@
         "network.prefetch-next" = false;
         "network.dns.disablePrefetch" = true;
         "network.predictor.enabled" = false;
-        "network.http.speculative-parallel-limit" = "0";
+        "network.http.speculative-parallel-limit" = 0;
         "browser.places.speculativeConnect.enabled" = false;
         "network.dns.disableIPv6" = true;
         "network.gio.supported-protocols" = "";
@@ -121,11 +121,11 @@
         "signon.rememberSignons" = false;
         "signon.autofillForms" = true; # needed for Proton Pass
         "signon.formlessCapture.enabled" = true; # above
-        "network.auth.subresource-http-auth-allow" = "1";
+        "network.auth.subresource-http-auth-allow" = 1;
 
         # Disk Cache / Memory
         "browser.cache.disk.enable" = false;
-        "browser.sessionstore.privacy_level" = "2";
+        "browser.sessionstore.privacy_level" = 2;
         "browser.sessionstore.resume_from_crash" = false;
         "browser.pagethumbnails.capturing_disabled" = true;
         "browser.shell.shortcutFavicons" = false;
@@ -137,14 +137,14 @@
         "browser.xul.error_pages.expert_bad_cert" = true;
         "security.tls.enable_0rtt_data" = false;
         "security.OCSP.require" = true;
-        "security.pki.sha1_enforcement_level" = "1";
-        "security.cert_pinning.enforcement_level" = "2";
+        "security.pki.sha1_enforcement_level" = 1;
+        "security.cert_pinning.enforcement_level" = 2;
         "security.remote_settings.crlite_filters.enabled" = true;
-        "security.pki.crlite_mode" = "2";
+        "security.pki.crlite_mode" = 2;
 
         # Headers / Referers
-        "network.http.referer.XOriginPolicy" = "2";
-        "network.http.referer.XOriginTrimmingPolicy" = "2";
+        "network.http.referer.XOriginPolicy" = 2;
+        "network.http.referer.XOriginTrimmingPolicy" = 2;
 
         # Audio / Video: WebRTC, WebGL, DRM
         "media.peerconnection.enabled" = false;
@@ -152,7 +152,7 @@
         "media.peerconnection.ice.default_address_only" = true;
         "media.peerconnection.ice.no_host" = true;
         "webgl.disabled" = true;
-        "media.autoplay.default" = "5";
+        "media.autoplay.default" = 5;
         "media.eme.enabled" = false; # disable DRM
 
         # Downloads
@@ -174,12 +174,12 @@
         "privacy.userContext.enabled" = true;
 
         # Extensions
-        "extensions.enabledScopes" = "5";
+        "extensions.enabledScopes" = 5;
         "extensions.webextensions.restrictedDomains" = "";
         "extensions.postDownloadThirdPartyPrompt" = false;
 
         # Shutdown Settings
-        "network.cookie.lifetimePolicy" = "2";
+        "network.cookie.lifetimePolicy" = 2;
         "privacy.sanitize.sanitizeOnShutdown" = true;
         "privacy.clearOnShutdown.cache" = true;
         "privacy.clearOnShutdown.cookies" = true;
@@ -189,12 +189,12 @@
         "privacy.clearOnShutdown.offlineApps" = true;
         "privacy.clearOnShutdown.sessions" = true;
         "privacy.clearOnShutdown.sitesettings" = false;
-        "privacy.sanitize.timeSpan" = "0";
+        "privacy.sanitize.timeSpan" = 0;
 
         # Fingerprinting (RFP)
         "privacy.resistFingerprinting" = true;
-        "privacy.window.maxInnerWidth" = "1600";
-        "privacy.window.maxInnerHeight" = "900";
+        "privacy.window.maxInnerWidth" = 1400;
+        "privacy.window.maxInnerHeight" = 900;
         "privacy.resistFingerprinting.block_mozAddonManager" = true;
         "browser.display.use_system_colors" = false;
         "browser.startup.blankWindow" = false;
