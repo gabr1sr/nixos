@@ -70,5 +70,12 @@ final: prev: {
       version = "0.0.32";
       sha256 = "1ykhzs3nllbnl0dpb2xlvd4m9hj8am7nzz1fx9zw2z2gylx533js";
     };
+
+    "rubymaniac"."vscode-direnv" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "vscode-direnv";
+      publisher = "rubymaniac";
+      version = "0.0.2";
+      sha256 = "1gml41bc77qlydnvk1rkaiv95rwprzqgj895kxllqy4ps8ly6nsd";
+    };
   };
 }

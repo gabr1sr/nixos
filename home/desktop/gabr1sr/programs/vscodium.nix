@@ -28,6 +28,7 @@
       jebbs.plantuml
       editorconfig.editorconfig
       tintinweb.graphviz-interactive-preview
+      rubymaniac.vscode-direnv
     ];
   };
 }

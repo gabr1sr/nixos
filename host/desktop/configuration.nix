@@ -1,7 +1,14 @@
 { config, pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ../../containers/browser.nix ];
+  imports = [ ./hardware-configuration.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -82,7 +89,7 @@
     isNormalUser = true;
     description = "Gabriel Rosa";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ firefox ];
+    packages = with pkgs; [ ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -103,6 +110,10 @@
     wineWowPackages.stable
     winetricks
     lutris
+    libreoffice-qt
+    hunspell
+    hunspellDicts.pt_BR
+    tor-browser
 
     (steam.override {
       extraPkgs = pkgs: [
@@ -140,6 +151,11 @@
       discord = {
         executable = "${pkgs.discord}/bin/discord";
         profile = "${pkgs.firejail}/etc/firejail/discord.profile";
+      };
+
+      tor-browser = {
+        executable = "${pkgs.tor-browser}/bin/tor-browser";
+        profile = "${pkgs.firejail}/etc/firejail/tor-browser-en-us.profile";
       };
     };
   };

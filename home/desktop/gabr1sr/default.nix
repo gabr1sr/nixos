@@ -1,6 +1,10 @@
 { config, pkgs, ... }: {
-  imports =
-    [ ./programs/git.nix ./programs/direnv.nix ./programs/vscodium.nix ];
+  imports = [
+    ./programs/git.nix
+    ./programs/direnv.nix
+    ./programs/vscodium.nix
+    ./programs/firefox.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -21,6 +25,7 @@
 
     # Gaming
     pkgs.clonehero
+    pkgs.prismlauncher
 
     # Solidity
     pkgs.nur.repos.gabr1sr.vscode-solidity-server
