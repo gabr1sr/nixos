@@ -118,6 +118,8 @@
 
     (steam.override {
       extraPkgs = pkgs: [
+        gamemode
+        mangohud
         glxinfo
         gperftools
         xorg.libXcursor

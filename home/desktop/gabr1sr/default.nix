@@ -22,6 +22,7 @@
     # Misc
     pkgs.dangerzone
     pkgs.protonup-qt
+    pkgs.plantuml
 
     # Gaming
     pkgs.clonehero
