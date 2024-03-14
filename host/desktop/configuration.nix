@@ -10,6 +10,8 @@
     options = "--delete-older-than 7d";
   };
 
+  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
+  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -31,6 +33,8 @@
       ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
       ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
     '';
+
+    allowedTCPPorts = [ 22 80 443 ];
   };
 
   networking.nat = {
@@ -66,8 +70,10 @@
   '';
 
   services.xserver = {
-    layout = "br";
-    xkbVariant = "";
+    xkb = {
+      layout = "br";
+      variant = "";
+    };
   };
 
   console.keyMap = "br-abnt2";
@@ -85,10 +91,51 @@
     jack.enable = true;
   };
 
+  services.syncthing = {
+    enable = true;
+    user = "gabr1sr";
+    dataDir = "/home/gabr1sr/Documentos";
+    configDir = "/home/gabr1sr/Documentos/.config/syncthing";
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "device1" = { id = "EYCKXUJ-LMZSDA7-TS6PYR5-AM6T3KX-CEE5OHZ-L54KV7C-3VO4KGD-EZBEGQX"; };
+      };
+      folders = {
+        "Documents" = {
+          path = "/home/gabr1sr/Documentos";
+          devices = [ "device1" ];
+        };
+
+        "Org" = {
+          path = "/home/gabr1sr/org";
+          devices = [ "device1" ];
+        };
+
+        "safe" = {
+          path = "/home/gabr1sr/safe";
+          devices = [ "device1" ];
+        };
+      };
+    };
+  };
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database DBuser origin-address auth-method
+      local all      all                   trust
+      host  all      all    127.0.0.1/32   trust
+      host  all      all    ::1/128        trust
+    '';
+  };
+
   users.users.gabr1sr = {
     isNormalUser = true;
     description = "Gabriel Rosa";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
     packages = with pkgs; [ ];
   };
 
@@ -115,6 +162,11 @@
     hunspellDicts.pt_BR
     tor-browser
     mangohud
+    vesktop
+    hugo
+    ripgrep
+    podman-compose
+    mermaid-cli
 
     (steam.override {
       extraPkgs = pkgs: [
@@ -172,7 +224,7 @@
 
   programs.noisetorch.enable = true;
   programs.gamemode.enable = true;
-
+  
   virtualisation = {
     podman = {
       enable = true;

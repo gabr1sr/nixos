@@ -77,5 +77,12 @@ final: prev: {
       version = "0.0.2";
       sha256 = "1gml41bc77qlydnvk1rkaiv95rwprzqgj895kxllqy4ps8ly6nsd";
     };
+
+    "vscodeemacs"."emacs" = final.vscode-utils.extensionFromVscodeMarketplace {
+      name = "emacs";
+      publisher = "vscodeemacs";
+      version = "0.1.3";
+      sha256 = "1gghcgcjk2h1sfkbbf31ja4390r3nccp7mr6ia48lvp4y2rganm1";
+    };
   };
 }

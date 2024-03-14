@@ -29,6 +29,7 @@
       editorconfig.editorconfig
       tintinweb.graphviz-interactive-preview
       rubymaniac.vscode-direnv
+      vscodeemacs.emacs
     ];
   };
 }
