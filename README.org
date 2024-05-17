@@ -1,0 +1,27 @@
+#+title: My NixOS Configuration
+This is the NixOS configuration I'm currently using.
+
+[[./preview.png]]
+
+* Features
+- i3wm
+- polybar
+- dunst
+- emacs ([[https://github.com/gabr1sr/.emacs.d][config here]])
+- kitty
+- pipewire
+
+* Switching
+Switching NixOS configuration:
+#+begin_src sh
+sudo nixos-rebuild switch --flake '.#desktop'
+#+end_src
+
+Where ~desktop~ is part of ~nixosConfigurations~ in ~flake.nix~.
+
+Switching Home-Manager configuration:
+#+begin_src sh
+home-manager switch --flkae '.#gabriel@desktop'
+#+end_src
+
+Where ~gabriel@desktop~ is part of ~homeConfigurations~ in ~flake.nix~.
