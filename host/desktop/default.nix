@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -93,31 +89,48 @@
     };
     
     systemPackages = with pkgs; [
+      # Tools
       git
-      vim
       wget
-      mg
+      ripgrep
+
+      # Editors
       emacs-unstable
+      vim
+      mg
+
+      # Daily
       tor-browser
-      xorg.xhost
+      qbittorrent
       vesktop
+
+      # Utils
       feh
+      xorg.xhost
+      libvterm-neovim
+      texlive.combined.scheme-full
+
+      # C/C++
       gcc
       ccls
       cmake
-      libvterm-neovim
-      ripgrep
-      texlive.combined.scheme-full
-      spotify
-      mangohud
-      gamemode
+      
+      # Media
       pavucontrol
+      spotify
       mpv
-      qbittorrent
+
+      # Gaming
       prismlauncher
       clonehero
       gzdoom
       xonotic
+
+      # Gaming Tools
+      mangohud
+      gamemode
+
+      # Podman
       dive
       podman-tui
       podman-compose
@@ -156,8 +169,8 @@
 
     steam = {
       enable = true;
-      # remotePlay.openFirewall = true;
-      # dedicatedServer.openFirewall = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
       package = with pkgs; steam.override {
         extraPkgs = pkgs: [
