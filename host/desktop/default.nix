@@ -93,6 +93,10 @@
       git
       wget
       ripgrep
+      p7zip
+      unzip
+      htop
+      unrar-wrapper
 
       # Editors
       emacs-unstable
@@ -102,7 +106,11 @@
       # Daily
       tor-browser
       qbittorrent
-      vesktop
+
+      # Discord
+      (vesktop.override {
+        withSystemVencord = false;
+      })
 
       # Utils
       feh
@@ -125,6 +133,9 @@
       clonehero
       gzdoom
       xonotic
+      lutris
+      wineWowPackages.stable
+      winetricks
 
       # Gaming Tools
       mangohud
@@ -134,6 +145,12 @@
       dive
       podman-tui
       podman-compose
+
+      # Office
+      libreoffice-qt
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.pt_BR
     ];
   };
 
@@ -241,12 +258,31 @@
       package = pkgs.emacs-unstable;
     };
 
-    dbus.enable = true;
     zerotierone = {
       enable = true;
       port = 9993;
       joinNetworks = [ "856127940c59bdf2" ];
     };
+
+    syncthing = {
+      enable = true;
+      user = "gabriel";
+      dataDir = "/home/gabriel/Documents";
+      configDir = "/home/gabriel/.config/syncthing";
+    };
+
+    postgresql = {
+      enable = true;
+      
+      authentication = pkgs.lib.mkOverride 10 ''
+        #type database DBuser origin-address auth-method
+        local all      all                   trust
+        host  all      all    127.0.0.1/32   trust
+        host  all      all    ::1/128        trust
+      '';
+    };
+
+    dbus.enable = true;
   };
 
   virtualisation = {
@@ -257,5 +293,5 @@
     };
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

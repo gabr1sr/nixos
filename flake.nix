@@ -35,6 +35,7 @@
           "steam-original"
           "zerotierone"
           "clonehero"
+          "mongodb"
         ];
       };
     in {
