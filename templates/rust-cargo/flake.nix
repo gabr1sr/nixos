@@ -23,6 +23,11 @@
               pkg-config
               rust-bin.stable.latest.default
             ];
+            shellHook = ''
+              if [ ! -e ./Cargo.toml ]; then
+                 cargo init
+              fi
+            '';
           };
         }
     );
