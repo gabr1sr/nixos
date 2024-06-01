@@ -13,10 +13,10 @@
       devShell = pkgs.mkShell {
         nativeBuildInputs = [ pkgs.bashInteractive ];
         buildInputs = with pkgs; [
-          erlang_27
-          erlang-ls
-          elixir
-          elixir-ls
+          beam.packages.erlang_26.elixir
+          beam.packages.erlang_26.elixir-ls
+          beam.packages.erlang_26.erlang
+          beam.packages.erlang_26.erlang-ls
         ];
       };
     });
