@@ -1,1 +1,0 @@
-now run ~forge init --force~

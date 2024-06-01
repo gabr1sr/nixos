@@ -25,6 +25,10 @@
 
           shellHook = ''
             export PS1="[solidity] $PS1"
+
+            if [ ! -e ./foundry.toml ]; then
+               forge init --force
+            fi
           '';
         };
     });
