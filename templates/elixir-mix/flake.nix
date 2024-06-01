@@ -18,6 +18,11 @@
           beam.packages.erlang_26.erlang
           beam.packages.erlang_26.erlang-ls
         ];
+        shellHook = ''
+          if [ ! -e ./mix.exs ]; then
+             mix new ./
+          fi
+        '';
       };
     });
 }
