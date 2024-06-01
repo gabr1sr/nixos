@@ -76,6 +76,11 @@
           description = "JavaScript - Node.js project";
           path = ./templates/js-node;
         };
+
+        elixir-mix = {
+          description = "Elixir - Mix project";
+          path = ./templates/elixir-mix;
+        };
       };
     };
 }
