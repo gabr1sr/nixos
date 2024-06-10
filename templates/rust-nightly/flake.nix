@@ -1,5 +1,5 @@
 {
-  description = "Rust - Cargo project";
+  description = "Rust Nightly";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -21,7 +21,9 @@
               gcc
               openssl
               pkg-config
-              rust-bin.stable.latest.default
+              (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+                extensions = [ "rust-analyzer" "rust-src" ];
+              }))
             ];
             shellHook = ''
               if [ ! -e ./Cargo.toml ]; then

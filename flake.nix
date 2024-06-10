@@ -62,24 +62,29 @@
       };
 
       templates = {
-        solidity-foundry = {
-          description = "Solidity - Foundry project";
-          path = ./templates/solidity-foundry;
+        foundry = {
+          description = "Foundry Project";
+          path = ./templates/foundry;
         };
 
-        rust-cargo = {
-          description = "Rust - Cargo project";
-          path = ./templates/rust-cargo;
+        rust = {
+          description = "Rust Project";
+          path = ./templates/rust;
         };
 
-        js-node = {
-          description = "JavaScript - Node.js project";
-          path = ./templates/js-node;
+        rust-nightly = {
+          description = "Rust Nightly Project";
+          path = ./templates/rust-nightly;
         };
 
-        elixir-mix = {
-          description = "Elixir - Mix project";
-          path = ./templates/elixir-mix;
+        nodejs = {
+          description = "Node.js Project";
+          path = ./templates/nodejs;
+        };
+
+        elixir = {
+          description = "Elixir Mix Project";
+          path = ./templates/elixir;
         };
       };
     };

@@ -35,6 +35,9 @@
     # Cairo
     pkgs.nur.repos.gabr1sr.starknet-foundry-bin
     pkgs.nur.repos.gabr1sr.scarb-bin
+
+    # devenv
+    pkgs.devenv
   ];
 
   home.file = {};
