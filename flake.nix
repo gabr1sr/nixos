@@ -36,6 +36,7 @@
           "zerotierone"
           "clonehero"
           "mongodb"
+          "google-chrome"
         ];
       };
     in {
@@ -65,6 +66,11 @@
         foundry = {
           description = "Foundry Project";
           path = ./templates/foundry;
+        };
+
+        foundry-devenv = {
+          description = "Foundry Project (devenv)";
+          path = ./templates/foundry-devenv;
         };
 
         rust = {

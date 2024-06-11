@@ -97,6 +97,8 @@
       unzip
       htop
       unrar-wrapper
+      nixpkgs-fmt
+      mermaid-cli
 
       # Editors
       emacs-unstable
@@ -106,6 +108,7 @@
       # Daily
       tor-browser
       qbittorrent
+      google-chrome
 
       # Discord
       (vesktop.override {
