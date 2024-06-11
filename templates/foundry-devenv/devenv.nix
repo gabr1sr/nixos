@@ -3,7 +3,7 @@
 {
   imports = [ inputs.nur.nixosModules.nur ];
 
-  packages = [ pkgs.nur.repos.gabr1sr.vscode-solidity-server ];
+  packages = [ config.nur.repos.gabr1sr.vscode-solidity-server ];
   
   languages.solidity.enable = true;
   languages.solidity.foundry.enable = true;
