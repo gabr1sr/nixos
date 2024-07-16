@@ -37,6 +37,7 @@
           "clonehero"
           "mongodb"
           "google-chrome"
+          "discord"
         ];
       };
     in {

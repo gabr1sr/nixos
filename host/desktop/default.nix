@@ -108,7 +108,6 @@
       # Daily
       tor-browser
       qbittorrent
-      google-chrome
 
       # Discord
       (vesktop.override {
@@ -120,6 +119,8 @@
       xorg.xhost
       libvterm-neovim
       texlive.combined.scheme-full
+      keepassxc
+      signal-desktop
 
       # C/C++
       gcc
@@ -261,11 +262,11 @@
       package = pkgs.emacs-unstable;
     };
 
-    zerotierone = {
-      enable = true;
-      port = 9993;
-      joinNetworks = [ "856127940c59bdf2" ];
-    };
+    # zerotierone = {
+    #   enable = true;
+    #   port = 9993;
+    #   joinNetworks = [ "856127940c59bdf2" ];
+    # };
 
     syncthing = {
       enable = true;
