@@ -118,8 +118,8 @@
 
         # Passwords
         "signon.rememberSignons" = false;
-        "signon.autofillForms" = true; # needed for Proton Pass
-        "signon.formlessCapture.enabled" = true; # above
+        "signon.autofillForms" = false;
+        "signon.formlessCapture.enabled" = false;
         "network.auth.subresource-http-auth-allow" = 1;
 
         # Disk Cache / Memory
@@ -205,6 +205,7 @@
         proton-pass
         metamask
         react-devtools
+        tree-style-tab
       ];
     };
   };
