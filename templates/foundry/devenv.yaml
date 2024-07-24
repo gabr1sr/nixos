@@ -1,7 +1,14 @@
 # yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
 inputs:
+  foundry:
+    url: github:shazow/foundry.nix
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
+  nur:
+    url: github:nix-community/NUR
 
 # If you're using non-OSS software, you can set allowUnfree to true.
 # allowUnfree: true
