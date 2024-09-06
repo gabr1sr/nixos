@@ -13,6 +13,7 @@
     
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     rust-overlay.url = "github:oxalica/rust-overlay";
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = { self, nixpkgs, hardware, nur, home-manager, emacs-overlay, rust-overlay, ... }@inputs:
@@ -38,6 +39,7 @@
           "mongodb"
           "google-chrome"
           "discord"
+          "steamcmd"
         ];
       };
     in {

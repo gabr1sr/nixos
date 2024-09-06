@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
+      inputs.nix-gaming.nixosModules.pipewireLowLatency
+      inputs.nix-gaming.nixosModules.platformOptimizations
     ];
 
   nix = {
@@ -36,8 +38,8 @@
       enable = true;
       logReversePathDrops = true;
 
-      allowedTCPPorts = [ 9993 ];
-      allowedUDPPorts = [ 9993 ];
+      # allowedTCPPorts = [ 9050 ];
+      # allowedUDPPorts = [ 9993 ];
 
       extraCommands = ''
         ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
@@ -99,6 +101,11 @@
       unrar-wrapper
       nixpkgs-fmt
       mermaid-cli
+      gnuplot
+      graphviz
+      charm-freeze
+      obs-studio
+      steamPackages.steamcmd
 
       # Editors
       emacs-unstable
@@ -108,19 +115,26 @@
       # Daily
       tor-browser
       qbittorrent
+      irssi
 
       # Discord
       (vesktop.override {
         withSystemVencord = false;
       })
+      (discord.override {
+        withOpenASAR = true;
+      })
 
       # Utils
       feh
       xorg.xhost
+      xorg.xkill
+      android-tools
       libvterm-neovim
       texlive.combined.scheme-full
       keepassxc
       signal-desktop
+      emacs-lsp-booster
 
       # C/C++
       gcc
@@ -140,6 +154,7 @@
       lutris
       wineWowPackages.stable
       winetricks
+      cataclysm-dda
 
       # Gaming Tools
       mangohud
@@ -177,6 +192,19 @@
       pinentryPackage = pkgs.pinentry-qt;
     };
 
+    proxychains = {
+      enable = true;
+      # chain.type = "random";
+      proxies = {
+        tor = {
+          enable = true;
+          type = "socks5";
+          host = "127.0.0.1";
+          port = 9050;
+        };
+      };
+    };
+
     firejail = {
       enable = true;
 
@@ -193,6 +221,8 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
+      platformOptimizations.enable = true;
+      
       package = with pkgs; steam.override {
         extraPkgs = pkgs: [
           gamescope
@@ -255,6 +285,12 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+
+      lowLatency = {
+        enable = true;
+        quantum = 64;
+        rate = 48000;
+      };
     };
 
     emacs = {
@@ -262,11 +298,11 @@
       package = pkgs.emacs-unstable;
     };
 
-    # zerotierone = {
-    #   enable = true;
-    #   port = 9993;
-    #   joinNetworks = [ "856127940c59bdf2" ];
-    # };
+    zerotierone = {
+      enable = true;
+      port = 9993;
+      joinNetworks = [ "856127940c59bdf2" ];
+    };
 
     syncthing = {
       enable = true;
@@ -275,17 +311,12 @@
       configDir = "/home/gabriel/.config/syncthing";
     };
 
-    postgresql = {
+    tor = {
       enable = true;
-      
-      authentication = pkgs.lib.mkOverride 10 ''
-        #type database DBuser origin-address auth-method
-        local all      all                   trust
-        host  all      all    127.0.0.1/32   trust
-        host  all      all    ::1/128        trust
-      '';
+      openFirewall = true;
+      client.enable = true;
     };
-
+    
     dbus.enable = true;
   };
 

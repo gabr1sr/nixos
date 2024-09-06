@@ -38,6 +38,10 @@
 
     # devenv
     pkgs.devenv
+
+    # LSP
+    pkgs.vscode-langservers-extracted
+    pkgs.tailwindcss-language-server
   ];
 
   home.file = {};
